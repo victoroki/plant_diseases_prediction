@@ -1,0 +1,7 @@
+__pycache__/
+*.env
+node_modules/
+.tailwindcss.cache
+package-lock.json
+venv1/
+.vscode/

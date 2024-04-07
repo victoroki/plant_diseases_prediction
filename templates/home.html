@@ -1,0 +1,139 @@
+{% extends 'index.html' %}
+
+{% block content %}
+    <div class=" pt-12 bg-white">
+        <div
+          class="flex gap-5 justify-between w-full text-2xl font-medium max-w-[1265px] max-md:flex-wrap max-md:max-w-full"
+        >
+          <img
+            loading="lazy"
+            srcset="..."
+            class="shrink-0 max-w-full aspect-[1.92] w-[153px]"
+          />
+          <div
+            class="flex gap-5 justify-between items-center px-5 my-auto max-md:flex-wrap max-md:max-w-full"
+          >
+            <div class="self-stretch my-auto text-black">Home</div>
+            <div class="flex-auto self-stretch my-auto text-neutral-500">
+              About Us
+            </div>
+            <div class="flex-auto self-stretch my-auto text-neutral-500">
+              Predict desease
+            </div>
+            <img
+              loading="lazy"
+              src="https://cdn.builder.io/api/v1/image/assets/TEMP/6e717e45ebb12ffbf3cbce6aec21d666c35e48574c45320d06a06edd2c5c4abe?"
+              class="shrink-0 self-stretch aspect-[0.95] fill-neutral-500 w-[38px]"
+            />
+          </div>
+        </div>
+        <div class="mt-20 w-full max-w-[1293px] max-md:mt-10 max-md:max-w-full">
+          <div class="flex gap-5 max-md:flex-col max-md:gap-0">
+            <div class="flex flex-col w-[46%] max-md:ml-0 max-md:w-full">
+              <div
+                class="flex flex-col self-stretch px-5 my-auto font-medium max-md:mt-10 max-md:max-w-full"
+              >
+                <div class="text-5xl text-black max-md:max-w-full max-md:text-4xl">
+                  Empowering Farmers with
+                  <span class="font-bold">Predictive</span>
+                  Plant Disease Solutions
+                </div>
+                <div
+                  class="mt-20 text-3xl text-neutral-500 max-md:mt-10 max-md:max-w-full"
+                >
+                  Our platform utilizes AI and machine learning for highly accurate
+                  plant disease prediction.
+                </div>
+                <div
+                  class="self-start px-12 pt-3 pb-6 mt-12 text-2xl text-center text-white whitespace-nowrap bg-teal-800 rounded-3xl max-md:px-5 max-md:mt-10"
+                >
+                  Know More
+                </div>
+              </div>
+            </div>
+            <div class="w-[50%] grid grid-cols-2 gap-2">
+              <img src="{{ url_for('static', filename='img/potatoes.jpg') }}" alt="potatoes">
+              <img src="{{ url_for('static', filename='img/maize.jpg') }}" alt="maize">
+              <img src="{{ url_for('static', filename='img/tomatoleaf.jpg') }}" alt="tomatoleaf">
+              <img src="{{ url_for('static', filename='img/apple.jpg') }}" alt="apple">
+            </div>
+          </div>
+        </div>
+        <div
+          class="shrink-0 mt-20 max-w-full h-1 bg-green-900 rounded-xl w-[978px] max-md:mt-10"
+        ></div>
+        <div
+          class="mt-12 text-5xl font-medium text-black max-md:mt-10 max-md:text-4xl"
+        >
+          <span class="font-black">Top</span>
+          Picks
+        </div>
+        <div
+          class="mt-6 text-3xl font-medium text-neutral-500 w-[578px] max-md:max-w-full"
+        >
+          Loved by our customers from 35+ cities
+        </div>
+        <div
+          class="flex flex-col self-stretch px-14 mt-5 w-full text-base font-medium text-neutral-500 max-md:px-5 max-md:max-w-full"
+        >
+          <img
+            loading="lazy"
+            srcset="..."
+            class="w-full aspect-[3.23] max-md:max-w-full"
+          />
+          <img
+            loading="lazy"
+            src="https://cdn.builder.io/api/v1/image/assets/TEMP/c8a1f6193dd75b285066ae448a0e4c31f7306582d79010d4bd0e560f9622fb11?"
+            class="self-end mt-3 mr-12 w-16 aspect-[2] fill-black max-md:mr-2.5"
+          />
+          <div class="mr-20 max-md:mr-2.5">Scroll on pictures for more</div>
+          <div
+            class="shrink-0 self-center mt-4 max-w-full h-1 bg-green-900 rounded-xl w-[978px]"
+          ></div>
+        </div>
+        <div
+          class="flex justify-center items-center self-stretch px-16 py-20 mt-3.5 w-full bg-white max-md:px-5 max-md:max-w-full"
+        >
+          <div
+            class="flex gap-5 justify-between mt-20 w-full max-w-[1091px] max-md:flex-wrap max-md:mt-10 max-md:max-w-full"
+          >
+            <img
+              loading="lazy"
+              srcset="..."
+              class="shrink-0 my-auto max-w-full aspect-[1.92] w-[153px]"
+            />
+            <div class="flex-auto max-md:max-w-full">
+              <div class="flex gap-5 max-md:flex-col max-md:gap-0">
+                <div class="flex flex-col w-[33%] max-md:ml-0 max-md:w-full">
+                  <div
+                    class="flex flex-col grow mt-20 text-xl font-medium leading-8 text-black max-md:mt-10"
+                  >
+                    <div>Gardening</div>
+                    <div class="mt-10">Edible</div>
+                  </div>
+                </div>
+                <div class="flex flex-col ml-5 w-[33%] max-md:ml-0 max-md:w-full">
+                  <div
+                    class="flex flex-col grow text-xl font-medium leading-8 text-black whitespace-nowrap max-md:mt-10"
+                  >
+                    <div>Services</div>
+                    <div class="mt-16 max-md:mt-10">Projects</div>
+                    <div class="mt-10">Affiliate</div>
+                  </div>
+                </div>
+                <div class="flex flex-col ml-5 w-[33%] max-md:ml-0 max-md:w-full">
+                  <div
+                    class="flex flex-col grow text-xl font-medium leading-8 text-black whitespace-nowrap max-md:mt-10"
+                  >
+                    <div>Terms of use</div>
+                    <div class="mt-16 max-md:mt-10">Privacy Policy</div>
+                    <div class="mt-10 max-md:mt-10">Contact us</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+{% endblock %}
