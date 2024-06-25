@@ -54,11 +54,18 @@
       Picks
     </div>
     <div class="div-4">Loved by our customers from 35+ cities</div>
-    <img
-      loading="lazy"
-      srcset="..."
-      class="img"
-    />
+    <div class="image-slider">
+      <button class="arrow left" onclick="scrollLeft()">&#9664;</button>
+      <div class="images-container">
+          <img src="{{ url_for('static', filename='img/scroll/blueberry.jpg') }}" alt="Image 1">
+          <img src="{{ url_for('static', filename='img/scroll/soybean.jpg') }}" alt="Image 2">
+          <img src="{{ url_for('static', filename='img/scroll/potato.jpg') }}" alt="Image 3">
+          <img src="{{ url_for('static', filename='img/scroll/grapes.jpg') }}" alt="Image 4">
+          <img src="{{ url_for('static', filename='img/scroll/apple.jpg') }}" alt="Image 5">
+      </div>
+      <button class="arrow right" onclick="scrollRight()">&#9654;</button>
+  </div>
+    
     <div class="div-5">
       <img
         loading="lazy"
@@ -69,6 +76,5 @@
     </div>
     <div class="div-7"></div>
   </div>
-
 
 {% endblock %}

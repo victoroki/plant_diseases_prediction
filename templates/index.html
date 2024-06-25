@@ -16,8 +16,27 @@
         {% endblock %}
     </main>
     <footer>
-        <p><marquee>&copy; 2024 Plant Disease Prediction</marquee></p>
+        {% block footeri %}
+        {% endblock %}
     </footer>
     <!-- JavaScript  -->
+    <script>
+        function scrollLeft() {
+            const container = document.querySelector('.image-slider .images-container');
+            container.scrollBy({
+                left: -400, // Adjust value based on image width
+                behavior: 'smooth'
+            });
+        }
+
+        function scrollRight() {
+            const container = document.querySelector('.image-slider .images-container');
+            container.scrollBy({
+                left: 400, // Adjust value based on image width
+                behavior: 'smooth'
+            });
+        }
+    </script>
+        
 </body>
 </html>
