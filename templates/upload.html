@@ -41,6 +41,7 @@
         cursor: pointer;
         margin-bottom: 20px;
         transition: border-color 0.3s ease;
+        position: relative; /* To make the label cover the input fully */
     }
 
     .upload-area:hover {
@@ -106,9 +107,24 @@
     function handleFiles(files) {
         const file = files[0];
         if (file.type.startsWith('image/')) {
-            // Process the file (e.g., upload or display preview)
-            console.log('File selected:', file.name);
-            // You can add further processing logic here
+            const formData = new FormData();
+            formData.append('file', file);
+
+            fetch('/upload', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    alert(data.error);
+                } else {
+                    alert(`Probability: ${data.probability}`);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
         } else {
             alert('Please select an image file (jpg, jpeg, png).');
         }

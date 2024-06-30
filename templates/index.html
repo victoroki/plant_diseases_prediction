@@ -3,44 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Plant Disease Prediction{% endblock %}</title>
-    <!--  CSS links  -->
-    <!-- <link href="{{url_for('static',filename='css/output.css')}}" rel="stylesheet"> -->
-    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}"> -->
-    <link rel="stylesheet" href="/static/style.css">
+    <title>Plant Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
+    <nav>
+        <div id="nav">
+            <h1>Plant Home</h1>
+            <ul>
+                <li><a class="links" href="/">Home</a></li>
+                <li><a class="links" href="/about">About</a></li>
+                <li><a class="links" href="/prediction">Plant Prediction</a></li>
+            </ul>
+        </div>
+    </nav>
 
-    <main>
-        {% block content %}
-        {% endblock %}
-    </main>
-    <section>
-        {% block upload %}
-        {% endblock %}
-    </section>
-    <footer>
-        {% block footer %}
-        {% endblock %}
-    </footer>
-    <!-- JavaScript  -->
+    {% include "top.html" %}
+    <div id="upload-container">
+        {% include "upload.html" %}
+    </div>
+    {% include "footer.html" %}
+  
     <script>
         function scrollLeft() {
-            const container = document.querySelector('.image-slider .images-container');
+            const container = document.querySelector('.images-container');
             container.scrollBy({
-                left: -400, // Adjust value based on image width
+                left: -400,
                 behavior: 'smooth'
             });
         }
 
         function scrollRight() {
-            const container = document.querySelector('.image-slider .images-container');
+            const container = document.querySelector('.images-container');
             container.scrollBy({
-                left: 400, // Adjust value based on image width
+                left: 400,
                 behavior: 'smooth'
             });
         }
     </script>
-        
 </body>
 </html>
