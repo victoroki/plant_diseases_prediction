@@ -1,114 +1,163 @@
-<div class="upload-container">
-    <div class="upload-icon">
-        <i class="fas fa-cloud-upload-alt"></i>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Upload Image</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        .upload-container {
+            max-width: 600px;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            text-align: center;
+            margin: 20px auto;
+        }
+
+        .upload-icon {
+            font-size: 48px;
+            color: #2D6A4F;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .upload-area {
+            border: 2px dashed #ccc;
+            padding: 20px;
+            cursor: pointer;
+            margin-bottom: 20px;
+            transition: border-color 0.3s ease;
+            position: relative;
+        }
+
+        .upload-area:hover {
+            border-color: #2D6A4F;
+        }
+
+        .upload-instructions {
+            font-size: 16px;
+            color: #777;
+        }
+
+        .file-input {
+            opacity: 0;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+
+        label[for="fileInput"] {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #2D6A4F;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        label[for="fileInput"]:hover {
+            background-color: #1E503D;
+        }
+
+        .predict-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #2D6A4F;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .predict-button:hover {
+            background-color: #1E503D;
+        }
+
+        .result {
+            margin-top: 20px;
+        }
+
+        .result img {
+            max-width: 100%;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .result p {
+            font-size: 18px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="upload-container">
+        <div class="upload-icon">
+            <i class="fas fa-cloud-upload-alt"></i>
+        </div>
+        <div class="upload-area" id="uploadArea">
+            <label for="fileInput">
+                <strong>Drag and drop</strong> files here<br>
+                or<br>
+                <strong>Click to browse</strong>
+            </label>
+            <input type="file" id="fileInput" class="file-input" accept="image/*">
+        </div>
+        <div class="upload-instructions">
+            Only image files are allowed (jpg, jpeg, png).
+        </div>
+        <button class="predict-button" onclick="predict()">Predict</button>
+        <div class="result" id="result"></div>
     </div>
-    <div class="upload-area" id="uploadArea">
-        <label for="fileInput">
-            <strong>Drag and drop</strong> files here<br>
-            or<br>
-            <strong>Click to browse</strong>
-        </label>
-        <input type="file" id="fileInput" class="file-input" accept="image/*">
-    </div>
-    <div class="upload-instructions">
-        Only image files are allowed (jpg, jpeg, png).
-    </div>
-</div>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script>
+        const uploadArea = document.getElementById('uploadArea');
+        const fileInput = document.getElementById('fileInput');
+        let selectedFile;
 
-<style>
-    .upload-container {
-        max-width: 600px;
-        background-color: #ffffff;
-        padding: 20px;
-        border-radius: 8px;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Shadow effect */
-        text-align: center;
-        margin: 20px auto; /* Centering the container horizontally */
-    }
+        uploadArea.addEventListener('dragover', (event) => {
+            event.preventDefault();
+            uploadArea.classList.add('dragover');
+        });
 
-    .upload-icon {
-        font-size: 48px;
-        color: #2D6A4F;
-        margin-bottom: 20px;
-        text-shadow: 0 2px 4px rgba(0,0,0,0.2); /* Text shadow effect */
-    }
+        uploadArea.addEventListener('dragleave', () => {
+            uploadArea.classList.remove('dragover');
+        });
 
-    .upload-area {
-        border: 2px dashed #ccc;
-        padding: 20px;
-        cursor: pointer;
-        margin-bottom: 20px;
-        transition: border-color 0.3s ease;
-        position: relative; /* To make the label cover the input fully */
-    }
+        uploadArea.addEventListener('drop', (event) => {
+            event.preventDefault();
+            uploadArea.classList.remove('dragover');
+            const files = event.dataTransfer.files;
+            handleFiles(files);
+        });
 
-    .upload-area:hover {
-        border-color: #2D6A4F; /* Change border color on hover */
-    }
+        fileInput.addEventListener('change', (event) => {
+            const files = event.target.files;
+            handleFiles(files);
+        });
 
-    .upload-instructions {
-        font-size: 16px;
-        color: #777;
-    }
+        function handleFiles(files) {
+            const file = files[0];
+            if (file.type.startsWith('image/')) {
+                selectedFile = file;
+                document.getElementById('result').innerHTML = `<img src="${URL.createObjectURL(file)}" alt="Uploaded Image">`;
+            } else {
+                alert('Please select an image file (jpg, jpeg, png).');
+            }
+        }
 
-    /* Styling the file input button */
-    .file-input {
-        opacity: 0;
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        cursor: pointer;
-    }
+        function predict() {
+            if (!selectedFile) {
+                alert('Please upload an image file first.');
+                return;
+            }
 
-    label[for="fileInput"] {
-        display: inline-block;
-        padding: 10px 20px;
-        background-color: #2D6A4F;
-        color: white;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-    }
-
-    label[for="fileInput"]:hover {
-        background-color: #1E503D;
-    }
-</style>
-
-<script>
-    const uploadArea = document.getElementById('uploadArea');
-    const fileInput = document.getElementById('fileInput');
-
-    uploadArea.addEventListener('dragover', (event) => {
-        event.preventDefault();
-        uploadArea.classList.add('dragover');
-    });
-
-    uploadArea.addEventListener('dragleave', () => {
-        uploadArea.classList.remove('dragover');
-    });
-
-    uploadArea.addEventListener('drop', (event) => {
-        event.preventDefault();
-        uploadArea.classList.remove('dragover');
-        const files = event.dataTransfer.files;
-        handleFiles(files);
-    });
-
-    fileInput.addEventListener('change', (event) => {
-        const files = event.target.files;
-        handleFiles(files);
-    });
-
-    function handleFiles(files) {
-        const file = files[0];
-        if (file.type.startsWith('image/')) {
             const formData = new FormData();
-            formData.append('file', file);
+            formData.append('file', selectedFile);
 
             fetch('/upload', {
                 method: 'POST',
@@ -119,14 +168,13 @@
                 if (data.error) {
                     alert(data.error);
                 } else {
-                    alert(`Probability: ${data.probability}`);
+                    document.getElementById('result').innerHTML += `<p>Prediction: ${data.prediction}</p>`;
                 }
             })
             .catch(error => {
                 console.error('Error:', error);
             });
-        } else {
-            alert('Please select an image file (jpg, jpeg, png).');
         }
-    }
-</script>
+    </script>
+</body>
+</html>
