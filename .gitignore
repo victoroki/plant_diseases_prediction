@@ -4,4 +4,5 @@ node_modules/
 .tailwindcss.cache
 package-lock.json
 venv1/
+uploads/
 .vscode/

@@ -1,6 +1,5 @@
 import os
 import numpy as np
-import tensorflow as tf
 from flask import Flask, request, render_template, jsonify
 from werkzeug.utils import secure_filename
 from PIL import Image
@@ -13,13 +12,19 @@ if not os.path.exists(app.config['UPLOAD_FOLDER']):
     os.makedirs(app.config['UPLOAD_FOLDER'])
 
 def model_prediction(test_image):
+    import tensorflow as tf  
     model = tf.keras.models.load_model("plant_prediction.keras")
     image = Image.open(test_image)
     image = image.resize((128, 128))
     input_arr = np.array(image)
-    input_arr = np.expand_dims(input_arr, axis=0)  # Convert single image to batch
+    input_arr = np.expand_dims(input_arr, axis=0) 
     predictions = model.predict(input_arr)
-    return np.argmax(predictions)  # Return index of max element
+
+    answer = np.argmax(predictions)
+    if(answer < 0.40):
+        return 0
+    else:
+        return answer 
 
 @app.route('/')
 def home():
@@ -28,6 +33,15 @@ def home():
 @app.route('/about')
 def about():
     return render_template('about.html')
+
+@app.route('/login')
+def login():
+    return render_template('login.html')
+
+
+@app.route('/register')
+def register():
+    return render_template('register.html')
 
 @app.route('/upload', methods=['POST'])
 def upload_file():
