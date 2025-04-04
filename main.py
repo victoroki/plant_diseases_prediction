@@ -77,6 +77,7 @@ def upload_file():
         return jsonify(prediction=predicted_class)
 
 if __name__ == "__main__":
-    host = os.environ.get("HOST", "127.0.0.1")  # Safer default for local development
-    port = int(os.environ.get("PORT", 4000))     # Default port for development
-    app.run(host=host, port=port)
+    app.run(host="0.0.0.0")
+    # host = os.environ.get("HOST", "127.0.0.1")  # Safer default for local development
+    # port = int(os.environ.get("PORT", 4000))     # Default port for development
+    # app.run(host=host, port=port)
