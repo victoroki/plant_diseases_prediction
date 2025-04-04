@@ -1,6 +1,6 @@
 Flask==2.0.3
 werkzeug==2.0.3
 Pillow==9.0.1
-tensorflow>=2.12.0  # Updated to work with Python 3.11
-numpy==1.21.6
+tensorflow>=2.12.0  # or tensorflow==2.19.0
+numpy>=1.22.0  # Updated for Python 3.11 compatibility
 gunicorn==20.1.0
